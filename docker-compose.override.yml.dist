@@ -1,11 +1,15 @@
-version: '3'
+version: '3.2'
 
 services:
-
   httpbin:
-    domainname: kapb14.me
-    #volumes:
-    #- "./volume:/httpbin"
+    domainname: example.com
+    tmpfs:
+      - /tmpfs:size=200M
     ports:
-    - "127.0.0.1:28084:8080"
-    #- "0.0.0.0:80:80"
+      - "8080:8080"
+    environment:
+      - HTTPBIN_PORT=8080
+      - GUNICORN_TMPDIR=/tmpfs
+      #- SENTRY_DSN=
+      #- HTTPBIN_TRACKING=false
+      #- DEBUG=false

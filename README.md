@@ -1,11 +1,28 @@
-# httpbin(1): HTTP Request & Response Service
+# httpbin: HTTP Request & Response Service
+
+Originally a [Kenneth Reitz](http://kennethreitz.org/) Project.
+See [httpbin.org](http://httpbin.org) for more information.
 
 
-A [Kenneth Reitz](http://kennethreitz.org/) Project.
+## Quick Start
 
-![ice cream](http://farm1.staticflickr.com/572/32514669683_4daf2ab7bc_k_d.jpg)
+### with Docker
 
-See http://httpbin.org for more information.
+```shell
+$ docker pull kapb14/httpbin
+$ docker run -d -p 80:80 kapb14/httpbin
+```
+
+### with Docker Compose
+
+```shell
+$ git clone git@github.com:kapb14/httpbin.git && cd httpbin
+$ cp docker-compose.override.yml.dist docker-compose.override.yml
+$ $EDITOR docker-compose.override.yml
+$ docker-compose up -d
+```
+
+___
 
 ## Officially Deployed at:
 
@@ -22,3 +39,4 @@ See http://httpbin.org for more information.
 - https://www.hurl.it
 - http://requestb.in
 - http://python-requests.org
+
