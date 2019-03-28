@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+
+  httpbin:
+    domainname: kapb14.me
+    #volumes:
+    #- "./volume:/httpbin"
+    ports:
+    - "127.0.0.1:28084:8080"
+    #- "0.0.0.0:80:80"

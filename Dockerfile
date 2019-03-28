@@ -1,17 +1,18 @@
 FROM python:2-alpine
 
-ENV WEB_CONCURRENCY=4
+WORKDIR /httpbin
+COPY --chown=nobody:nobody . /httpbin
 
-ADD . /httpbin
-
-RUN apk add -U ca-certificates libffi libstdc++ && \
-    apk add --virtual build-deps build-base libffi-dev && \
-    # Pip
+RUN apk --update add --update ca-certificates libffi libstdc++ nano bash curl && \
+    apk add --no-cache --virtual build-deps build-base libffi-dev && \
     pip install --no-cache-dir gunicorn /httpbin && \
-    # Cleaning up
     apk del build-deps && \
     rm -rf /var/cache/apk/*
 
-EXPOSE 8080
+ENV WEB_CONCURRENCY=4
 
-CMD ["gunicorn", "-b", "0.0.0.0:8080", "httpbin:app"]
+USER nobody
+
+EXPOSE 80
+
+CMD ["gunicorn", "-b", "0.0.0.0:80", "httpbin:app"]

@@ -1,0 +1,11 @@
+version: '2.2'
+
+services:
+  httpbin:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: kapb14/httpbin-alpine
+    container_name: httpbin
+    hostname: httpbin
+    restart: unless-stopped
